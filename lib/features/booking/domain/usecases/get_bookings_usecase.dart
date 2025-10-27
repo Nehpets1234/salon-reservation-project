@@ -17,7 +17,7 @@ class GetBookingsUseCase {
         userId: userId,
         staffId: staffId,
       );
-      return Right(bookings);
+      return Right(bookings as List<BookingEntity>);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

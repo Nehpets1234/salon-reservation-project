@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "353656189417",
+    "project_id": "salon-reservation-f5896",
+    "storage_bucket": "salon-reservation-f5896.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353656189417:android:f9d8f7f34947fde6529b78",
+        "android_client_info": {
+          "package_name": "com.example.member1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXwAzqR_Pz85yyNkjiIBw7T6G8S398r5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

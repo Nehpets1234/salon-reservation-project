@@ -16,22 +16,22 @@ class ServiceRepositoryImpl implements ServiceRepository {
       final result = await remoteDataSource.getServices();
       return Right(result);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure('Failed to fetch services: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, ServiceEntity?>> getServiceDetail(String serviceId) async {
+  Future<Either<Failure, ServiceEntity>> getServiceDetail(String serviceId) async {
     try {
       final result = await remoteDataSource.getServiceDetail(serviceId);
-      return Right(result);
+      return Right(result as ServiceEntity);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure('Failed to get service detail: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> addService(ServiceEntity service) async {
+  Future<Either<Failure, Unit>> addService(ServiceEntity service) async {
     try {
       final model = ServiceModel(
         id: service.id,
@@ -41,14 +41,14 @@ class ServiceRepositoryImpl implements ServiceRepository {
         durationMinutes: service.durationMinutes,
       );
       await remoteDataSource.addService(model);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure('Failed to add service: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> updateService(ServiceEntity service) async {
+  Future<Either<Failure, Unit>> updateService(ServiceEntity service) async {
     try {
       final model = ServiceModel(
         id: service.id,
@@ -58,19 +58,19 @@ class ServiceRepositoryImpl implements ServiceRepository {
         durationMinutes: service.durationMinutes,
       );
       await remoteDataSource.updateService(model);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure('Failed to update service: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> deleteService(String serviceId) async {
+  Future<Either<Failure, Unit>> deleteService(String serviceId) async {
     try {
       await remoteDataSource.deleteService(serviceId);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure('Failed to delete service: $e'));
     }
   }
 }

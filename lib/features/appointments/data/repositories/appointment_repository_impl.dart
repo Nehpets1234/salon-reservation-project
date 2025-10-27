@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/errors/failure.dart';
 import '../../domain/entities/appointment_entity.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../datasources/appointment_remote_datasource.dart';
 import '../models/appointment_model.dart';
+import '../../../../core/errors/failure.dart'; 
+
 
 class AppointmentRepositoryImpl implements AppointmentRepository {
   final AppointmentRemoteDataSource remoteDataSource;

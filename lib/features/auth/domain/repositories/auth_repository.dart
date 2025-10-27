@@ -16,5 +16,5 @@ abstract class AuthRepository {
 
   Future<Either<Failure, void>> updateUserProfile(UserEntity user);
 
-  Future<Either<Failure, void>> logout();
+  Future<Either<Failure, void>> logout(); // TODO: make a use case class for this one
 }

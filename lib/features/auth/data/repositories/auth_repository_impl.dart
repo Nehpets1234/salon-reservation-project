@@ -22,8 +22,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, UserEntity>> register(
-      String name, String email, String password,
-      {String? phone}) async {
+      String name, String email, String password, {String? phone}) async {
     try {
       final user = await remoteDataSource.register(name, email, password, phone: phone);
       return Right(user);
@@ -52,6 +51,16 @@ class AuthRepositoryImpl implements AuthRepository {
         phone: user.phone,
       );
       await remoteDataSource.updateUserProfile(userModel);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> logout() async {
+    try {
+      await remoteDataSource.logout();
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));

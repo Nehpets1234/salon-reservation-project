@@ -11,7 +11,7 @@ class BookingRepositoryImpl implements BookingRepository {
   BookingRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, bool>> createBooking(BookingEntity booking) async {
+  Future<Either<Failure, Unit>> createBooking(BookingEntity booking) async {
     try {
       final model = BookingModel(
         id: booking.id,
@@ -23,7 +23,7 @@ class BookingRepositoryImpl implements BookingRepository {
         status: booking.status,
       );
       await remoteDataSource.createBooking(model);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
       return Left(ServerFailure('Failed to create booking: $e'));
     }
@@ -46,30 +46,31 @@ class BookingRepositoryImpl implements BookingRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> cancelBooking(String bookingId) async {
+  Future<Either<Failure, Unit>> cancelBooking(String bookingId) async {
     try {
       await remoteDataSource.cancelBooking(bookingId);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
       return Left(ServerFailure('Failed to cancel booking: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> assignStaff(String bookingId, String staffId) async {
+  Future<Either<Failure, Unit>> assignStaff(String bookingId, String staffId) async {
     try {
       await remoteDataSource.assignStaff(bookingId, staffId);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
       return Left(ServerFailure('Failed to assign staff: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> rescheduleBooking(String bookingId, DateTime newDateTime) async {
+  Future<Either<Failure, Unit>> rescheduleBooking(
+      String bookingId, DateTime newDateTime) async {
     try {
       await remoteDataSource.rescheduleBooking(bookingId, newDateTime);
-      return const Right(true);
+      return const Right(unit);
     } catch (e) {
       return Left(ServerFailure('Failed to reschedule booking: $e'));
     }

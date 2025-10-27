@@ -68,5 +68,16 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
     } catch (e) {
       return Left(ServerFailure('Failed to notify customer: $e'));
     }
+  } 
+
+   /// ✅ IMPLEMENTATION ADDED HERE
+  @override
+  Future<Either<Failure, bool>> notifyAdmin(String message) async {
+    try {
+      final result = await remoteDataSource.notifyAdmin(message);
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure('Failed to notify admin: $e'));
+    }
   }
 }

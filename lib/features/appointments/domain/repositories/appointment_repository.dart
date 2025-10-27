@@ -21,5 +21,8 @@ abstract class AppointmentRepository {
   Future<Either<Failure, bool>> notifyCustomer(
     String appointmentId,
     String message,
-  );
+  ); 
+
+  Future<Either<Failure, bool>> notifyAdmin(String message);
+
 }

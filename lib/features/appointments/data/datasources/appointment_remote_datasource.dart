@@ -11,4 +11,6 @@ abstract class AppointmentRemoteDataSource {
   Future<bool> cancelAppointment(String appointmentId);
 
   Future<bool> notifyCustomer(String appointmentId, String message);
+
+  Future notifyAdmin(String message) async {}
 }

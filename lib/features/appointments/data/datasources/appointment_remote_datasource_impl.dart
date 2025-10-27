@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/appointment_model.dart';
 import 'appointment_remote_datasource.dart';
 
-class AppointmentRemoteDataSourceImpl implements AppointmentRemoteDataSource {
+abstract class AppointmentRemoteDataSourceImpl implements AppointmentRemoteDataSource {
   final FirebaseFirestore firestore;
 
   AppointmentRemoteDataSourceImpl(this.firestore);
